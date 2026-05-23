@@ -1,5 +1,4 @@
 DROP DATABASE IF EXISTS ShopDB;
-
 CREATE DATABASE ShopDB;
 USE ShopDB;
 
@@ -24,13 +23,25 @@ CREATE TABLE Warehouses (
 CREATE TABLE ProductInventory (
     ID INT PRIMARY KEY,
     ProductID INT,
-    WarehouseAmount INT,
     WarehouseID INT,
+    WarehouseAmount INT,
     FOREIGN KEY (ProductID) REFERENCES Products(ID),
     FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID)
 );
 
-DELIMITER //
+INSERT INTO Countries VALUES (1,'Country1'),(2,'Country2');
+INSERT INTO Products VALUES (1,'AwesomeProduct');
+INSERT INTO Warehouses VALUES
+(1,'Warehouse-1','City-1',1),
+(2,'Warehouse-2','City-2',2);
+
+INSERT INTO ProductInventory VALUES
+(1,1,1,2),
+(2,1,2,4242);
+
+DROP PROCEDURE IF EXISTS get_warehouse_product_inventory;
+
+DELIMITER $$
 
 CREATE PROCEDURE get_warehouse_product_inventory(IN warehouse_id INT)
 BEGIN
@@ -40,6 +51,8 @@ BEGIN
     FROM ProductInventory pi
     JOIN Products p ON pi.ProductID = p.ID
     WHERE pi.WarehouseID = warehouse_id;
-END //
+END $$
 
 DELIMITER ;
+
+CALL get_warehouse_product_inventory(2);
