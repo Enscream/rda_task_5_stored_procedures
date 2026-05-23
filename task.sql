@@ -46,7 +46,7 @@ DELIMITER $$
 CREATE PROCEDURE get_warehouse_product_inventory(IN warehouse_id INT)
 BEGIN
     SELECT 
-        p.Name AS ProductName,
+        p.Name,
         pi.WarehouseAmount
     FROM ProductInventory pi
     JOIN Products p ON pi.ProductID = p.ID
