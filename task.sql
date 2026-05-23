@@ -30,7 +30,9 @@ CREATE TABLE ProductInventory (
 );
 
 INSERT INTO Countries VALUES (1,'Country1'),(2,'Country2');
-INSERT INTO Products VALUES (1,'AwesomeProduct');
+
+INSERT INTO Products VALUES (1,'AwersomeProduct');
+
 INSERT INTO Warehouses VALUES
 (1,'Warehouse-1','City-1',1),
 (2,'Warehouse-2','City-2',2);
@@ -54,5 +56,3 @@ BEGIN
 END $$
 
 DELIMITER ;
-
-CALL get_warehouse_product_inventory(2);

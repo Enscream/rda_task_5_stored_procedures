@@ -23,8 +23,18 @@ CREATE TABLE Warehouses (
 CREATE TABLE ProductInventory (
     ID INT PRIMARY KEY,
     ProductID INT,
-    WarehouseAmount INT,
     WarehouseID INT,
+    WarehouseAmount INT,
     FOREIGN KEY (ProductID) REFERENCES Products(ID),
     FOREIGN KEY (WarehouseID) REFERENCES Warehouses(ID)
 );
+
+INSERT INTO Countries VALUES (1,'Country1'),(2,'Country2');
+INSERT INTO Products VALUES (1,'AwersomeProduct');
+INSERT INTO Warehouses VALUES
+(1,'Warehouse-1','City-1',1),
+(2,'Warehouse-2','City-2',2);
+
+INSERT INTO ProductInventory VALUES
+(1,1,1,2),
+(2,1,2,4242);
